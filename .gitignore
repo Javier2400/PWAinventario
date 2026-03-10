@@ -1,0 +1,11 @@
+.env
+__pycache__/
+venv/
+.zencoder
+.zenflow
+contra
+frontend/node_modules/
+frontend/dist/
+*.pyc
+.vscode/
+.idea/
