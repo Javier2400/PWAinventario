@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from app.services.stripe_service import create_payment_intent
-from app.services.payment_service import get_payments
+from backend.services.stripe_service import create_payment_intent
+from backend.services.payment_service import get_payments
 
 router = APIRouter()
 
