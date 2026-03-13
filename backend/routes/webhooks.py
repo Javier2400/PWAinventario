@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, Header, HTTPException
 import stripe
 import os
-from backend.services.stripe_service import handle_webhook_event
+from services.stripe_service import handle_webhook_event
 
 router = APIRouter()
 

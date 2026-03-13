@@ -1,5 +1,5 @@
 from typing import List
-from app.models.payment import PaymentRecord
+from models.payment import PaymentRecord
 
 payments_db: List[PaymentRecord] = []
 

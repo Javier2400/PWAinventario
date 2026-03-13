@@ -1,10 +1,9 @@
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
 
 from fastapi import FastAPI
-from backend.routes import products
+from routes import products
 
 
 app = FastAPI()
@@ -15,11 +14,11 @@ app.include_router(products.router, prefix="/products", tags=["Products"])
 def read_root():
     return {"message": "API funcionando"}
 
-from backend.routes import payments, webhooks
+from routes import payments, webhooks
 app.include_router(payments.router, prefix="/payments", tags=["Payments"])
 app.include_router(webhooks.router, prefix="/webhooks", tags=["Webhooks"])
 
-from backend.routes import chatbot
+from routes import chatbot
 app.include_router(chatbot.router, prefix="/chatbot", tags=["Chatbot"])
 
 from fastapi.middleware.cors import CORSMiddleware

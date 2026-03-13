@@ -1,5 +1,5 @@
 from typing import List
-from app.models.product import Product
+from models.product import Product
 
 products_db: List[Product] = []
 

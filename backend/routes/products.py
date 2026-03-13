@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from backend.models.product import Product
-from backend.services.product_service import get_products, add_product, delete_product
+from models.product import Product
+from services.product_service import get_products, add_product, delete_product
 
 router = APIRouter()
 

@@ -1,8 +1,8 @@
 import stripe
 import os
 
-from app.services.payment_service import add_payment
-from app.models.payment import PaymentRecord
+from services.payment_service import add_payment
+from models.payment import PaymentRecord
 from datetime import datetime
 
 stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
