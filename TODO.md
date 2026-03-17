@@ -1,11 +1,14 @@
-# Railway Deployment Fix Progress
+# Fixed pip install error - Progress Tracker
 
-## Steps:
-- [x] 1. Clean backend/requirements.txt (remove garbling, pin deps)
-- [x] 2. Update backend/main.py (move uvicorn to top-level prod config)
-- [x] 3. Create backend/start.sh (prod launch script)
-- [x] 4. Update backend/Procfile (use start.sh)
-- [x] 5. Create backend/railway.json (healthcheck config)
-- [x] 6. Local test: cd backend && PORT=8080 python main.py ; curl http://localhost:8080/
-- [ ] 7. Git commit/push + redeploy Railway
-- [ ] Complete: Verify Railway logs show 0.0.0.0 binding + healthy
+## Plan Steps:
+
+1. ✅ Create this TODO.md
+2. Edit root `requirements.txt`: Remove `annotated-docs==0.0.4`
+3. Edit `backend/requirements.txt`: Remove `annotated-docs==0.0.4`
+4. Setup Python venv: `cd backend && python -m venv venv`
+5. Activate venv and install: `pip install -r requirements.txt`
+6. Verify: Backend starts with `uvicorn main:app --reload`
+7. Optional: Remove/clean root requirements.txt (redundant)
+
+Updated as steps complete.
+
