@@ -1,10 +1,11 @@
-# Fix ModuleNotFoundError: No module named 'app'
+# Railway Deployment Fix Progress
 
 ## Steps:
-- [x] Edit backend/services/product_service.py: Fix import from app.models.product to backend.models.product
-- [x] Edit backend/services/payment_service.py: Fix import from app.models.payment to backend.models.payment
-- [x] Read and fix backend/services/stripe_service.py (fixed app.models.payment and app.services.payment_service)
-- [x] Test locally (main.py moved to backend/main.py; server ran successfully)
-- [x] Added missing deps stripe==10.6.0, google-generativeai==0.8.3 to requirements.txt and backend/requirements.txt
-- [ ] Rebuild container to install stripe and start successfully
-
+- [x] 1. Clean backend/requirements.txt (remove garbling, pin deps)
+- [x] 2. Update backend/main.py (move uvicorn to top-level prod config)
+- [x] 3. Create backend/start.sh (prod launch script)
+- [x] 4. Update backend/Procfile (use start.sh)
+- [x] 5. Create backend/railway.json (healthcheck config)
+- [x] 6. Local test: cd backend && PORT=8080 python main.py ; curl http://localhost:8080/
+- [ ] 7. Git commit/push + redeploy Railway
+- [ ] Complete: Verify Railway logs show 0.0.0.0 binding + healthy

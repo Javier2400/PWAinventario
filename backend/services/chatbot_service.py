@@ -1,13 +1,18 @@
 import os
-import google.generativeai as genai
+from openai import OpenAI
 
-# Configure the Gemini API
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel("gemini-2.0-flash")
+# ChatAnywhere GPT API (OpenAI compatible)
+client = OpenAI(
+    base_url="https://api.chatanywhere.com/v1",
+    api_key=os.getenv("CHATANYWHERE_API_KEY", "sk-1eXRHaJcEYswkoaByTzNH6s0yRnVuYHU6z2BI6xCtRhkpvUD")
+)
 
 def chatbot_response(message: str):
     try:
-        response = model.generate_content(message)
-        return {"response": response.text}
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": message}]
+        )
+        return {"response": response.choices[0].message.content}
     except Exception as e:
         return {"response": f"Error al procesar el mensaje: {str(e)}"}

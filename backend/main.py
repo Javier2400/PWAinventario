@@ -7,7 +7,6 @@ load_dotenv()
 from fastapi import FastAPI
 from routes import products
 
-
 app = FastAPI()
 
 app.include_router(products.router, prefix="/products", tags=["Products"])
@@ -33,6 +32,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-if __name__ == "__main__":
-    port = int(os.getenv("PORT", 8080))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+# Production uvicorn server for Railway/Heroku
+port = int(os.getenv("PORT", 8080))
+uvicorn.run(
+    app, 
+    host="0.0.0.0", 
+    port=port,
+    workers=1,
+    reload=False
+)
+

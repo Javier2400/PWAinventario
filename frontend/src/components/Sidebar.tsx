@@ -14,7 +14,7 @@ export default function Sidebar({ onSelect, activeModule }: { onSelect: (name: s
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <span>MICROSIP</span>
+        <span>JAVIERSIP</span>
       </div>
       <nav className="sidebar-nav">
         {modules.map((mod) => (
