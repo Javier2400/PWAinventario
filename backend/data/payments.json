@@ -1,0 +1,31 @@
+[
+    {
+        "amount": 10000,
+        "currency": "mxn",
+        "status": "failed",
+        "error": "Tu tarjeta no admite esta moneda.",
+        "id": 1774029893,
+        "created_at": "2026-03-20T19:04:53+01:00"
+    },
+    {
+        "id": "pi_3TD7PdCsyImg6nen1RkMuroD",
+        "amount": 10000,
+        "currency": "mxn",
+        "status": "succeeded",
+        "created_at": "2026-03-20T19:05:15+01:00"
+    },
+    {
+        "id": "pi_3TD7S2CsyImg6nen1JJXVgfQ",
+        "amount": 10000,
+        "currency": "mxn",
+        "status": "succeeded",
+        "created_at": "2026-03-20T19:07:35+01:00"
+    },
+    {
+        "id": "pi_3TD7rsCsyImg6nen0TwZ23lt",
+        "amount": 10000,
+        "currency": "mxn",
+        "status": "succeeded",
+        "created_at": "2026-03-20T19:35:06+01:00"
+    }
+]

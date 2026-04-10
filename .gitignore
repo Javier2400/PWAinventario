@@ -6,6 +6,13 @@ venv/
 contra
 frontend/node_modules/
 frontend/dist/
+frontend_back/node_modules/
+frontend_back/dist/
+backend/vendor/
+backend/node_modules/
+*.log
+.env
+!.env.example
 *.pyc
 .vscode/
 .idea/

@@ -12,7 +12,6 @@ import {
   Package2,
 } from "lucide-react";
 import { getProducts, createProduct, updateProduct, deleteProduct } from "../services/api";
-import Chatbot from "../components/Chatbot";
 
 type Category = "Todos" | "Electrónica" | "Ropa" | "Alimentos" | "Hogar" | "Juguetes";
 
@@ -49,7 +48,7 @@ function deriveStatus(stock: number, minStock: number): "activo" | "agotado" | "
   return "activo";
 }
 
-export default function Dashboard() {
+export const InventoryView = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState<Category>("Todos");
@@ -60,7 +59,7 @@ export default function Dashboard() {
   const [sortField, setSortField] = useState<keyof Product>("name");
   const [sortAsc, setSortAsc] = useState(true);
 
-  const loadData = async () => {
+  const loadProductsData = async () => {
     try {
       const data = await getProducts();
       setProducts(data.map((p: any) => ({
@@ -71,12 +70,12 @@ export default function Dashboard() {
         status: deriveStatus(parseInt(p.stock), parseInt(p.minStock || 0))
       })));
     } catch (error) {
-      console.error("Error loading data:", error);
+      console.error("Error loading products:", error);
     }
   };
 
   useEffect(() => {
-    loadData();
+    loadProductsData();
   }, []);
 
   const filtered = products
@@ -97,6 +96,18 @@ export default function Dashboard() {
       return 0;
     });
 
+  const openAdd = () => {
+    setEditing(null);
+    setForm(EMPTY);
+    setModalOpen(true);
+  };
+
+  const openEdit = (p: Product) => {
+    setEditing(p);
+    setForm({ ...p });
+    setModalOpen(true);
+  };
+
   const handleSave = async () => {
     try {
       if (editing) {
@@ -105,9 +116,9 @@ export default function Dashboard() {
         await createProduct(form);
       }
       setModalOpen(false);
-      loadData();
+      loadProductsData();
     } catch (error) {
-      console.error("Error saving:", error);
+      console.error("Error saving product:", error);
     }
   };
 
@@ -115,10 +126,15 @@ export default function Dashboard() {
     try {
       await deleteProduct(id);
       setDeleteId(null);
-      loadData();
+      loadProductsData();
     } catch (error) {
-      console.error("Error deleting:", error);
+      console.error("Error deleting product:", error);
     }
+  };
+
+  const handleSort = (field: keyof Product) => {
+    if (sortField === field) setSortAsc(!sortAsc);
+    else { setSortField(field); setSortAsc(true); }
   };
 
   const totalActive = products.filter((p) => p.status === "activo").length;
@@ -127,7 +143,7 @@ export default function Dashboard() {
   const totalValue = products.reduce((acc, p) => acc + p.stock * p.price, 0);
 
   return (
-    <div className="dashboard max-w-7xl mx-auto px-6 py-6">
+    <div className="max-w-7xl mx-auto px-6 py-6">
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         {[
@@ -170,7 +186,7 @@ export default function Dashboard() {
           </div>
         </div>
         <button
-          onClick={() => { setEditing(null); setForm(EMPTY); setModalOpen(true); }}
+          onClick={openAdd}
           className="flex items-center gap-2 bg-fuchsia-950 text-white text-xs font-semibold uppercase tracking-widest px-5 py-2 rounded-[3px] hover:bg-fuchsia-900 transition-colors"
         >
           <Plus size={14} />
@@ -195,7 +211,7 @@ export default function Dashboard() {
                 ].map((col) => (
                   <th
                     key={col.field}
-                    onClick={() => { if (sortField === col.field) setSortAsc(!sortAsc); else { setSortField(col.field); setSortAsc(true); } }}
+                    onClick={() => handleSort(col.field)}
                     className="text-left px-4 py-3 text-[10px] font-semibold uppercase tracking-widest text-zinc-500 cursor-pointer select-none hover:text-fuchsia-950 transition-colors"
                   >
                     <span className="flex items-center gap-1">
@@ -238,7 +254,7 @@ export default function Dashboard() {
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => { setEditing(p); setForm({ ...p }); setModalOpen(true); }}
+                          onClick={() => openEdit(p)}
                           className="p-1.5 rounded-[3px] text-zinc-500 hover:bg-fuchsia-100 hover:text-fuchsia-950 transition-colors"
                         >
                           <Pencil size={13} />
@@ -327,7 +343,7 @@ export default function Dashboard() {
       {/* Delete confirm */}
       {deleteId !== null && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-          <div className="bg-white w-full max-sm mx-4 rounded-md shadow-2xl border border-zinc-200 overflow-hidden">
+          <div className="bg-white w-full max-w-sm mx-4 rounded-md shadow-2xl border border-zinc-200 overflow-hidden">
             <div className="bg-red-600 px-6 py-4 flex items-center gap-3">
               <Trash2 size={18} className="text-white" />
               <h2 className="text-white text-sm font-semibold uppercase tracking-widest">Eliminar Producto</h2>
@@ -352,8 +368,6 @@ export default function Dashboard() {
           </div>
         </div>
       )}
-
-      <Chatbot />
     </div>
   );
-}
+};

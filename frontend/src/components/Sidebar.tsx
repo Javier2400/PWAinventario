@@ -1,14 +1,7 @@
 export default function Sidebar({ onSelect, activeModule }: { onSelect: (name: string) => void, activeModule: string }) {
   const modules = [
-    { name: "Ventas" },
-    { name: "Compras" },
-    { name: "Inventarios" },
-    { name: "Cuentas por cobrar" },
-    { name: "Cuentas por pagar" },
+    { name: "Inventario" },
     { name: "Cobros (Stripe)" },
-    { name: "Bancos" },
-    { name: "Nómina" },
-    { name: "Contabilidad" },
   ];
 
   return (

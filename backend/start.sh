@@ -1,8 +1,13 @@
 #!/bin/sh
 set -e
 
-# Wait for DB if needed (add DATABASE_URL check later)
-echo "Starting inventory API on 0.0.0.0:${PORT:-8080}"
+cd /app/backend
 
-exec uvicorn main:app --host 0.0.0.0 --port ${PORT:-8080} --workers 1 --no-reload
+if [ ! -d "vendor" ]; then
+  echo "Installing PHP dependencies..."
+  composer install --no-dev --optimize-autoloader
+fi
 
+echo "Starting PHP inventory API on 0.0.0.0:${PORT:-8000}"
+
+exec php -S 0.0.0.0:${PORT:-8000} index.php

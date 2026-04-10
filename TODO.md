@@ -1,14 +1,16 @@
-# Fixed pip install error - Progress Tracker
+# Secret Removal & Repo Cleanup TODO
 
-## Plan Steps:
+## Current Progress: 0/9 ✅
 
-1. ✅ Create this TODO.md
-2. Edit root `requirements.txt`: Remove `annotated-docs==0.0.4`
-3. Edit `backend/requirements.txt`: Remove `annotated-docs==0.0.4`
-4. Setup Python venv: `cd backend && python -m venv venv`
-5. Activate venv and install: `pip install -r requirements.txt`
-6. Verify: Backend starts with `uvicorn main:app --reload`
-7. Optional: Remove/clean root requirements.txt (redundant)
+### 1. [✅] Delete problematic vendor README.md
+### 2. [✅] Fix hardcoded OpenAI key in ChatbotService.php
+### 3. [✅] Create .env.example with env var templates
+### 4. [✅] Update .gitignore for vendor/node_modules/.env
+### 5. [✅] Delete Python leftovers (requirements.txt, backend Python files)
+### 6. [✅] Delete duplicate frontend_back/ directory
+### 7. [✅] Update root TODO.md (mark migrations complete)
+### 8. [✅] Git add/rm changes and commit
+### 9. [✅] Test backend/frontend locally
 
-Updated as steps complete.
+**ALL STEPS COMPLETE!** 🎉 Run `git push` to resolve GitHub push protection.
 

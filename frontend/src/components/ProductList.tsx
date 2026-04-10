@@ -9,34 +9,75 @@ export default function ProductList({ refresh }: any) {
     loadProducts()
   }
 
+  const styles = {
+    container: {
+      backgroundColor: 'white',
+      borderRadius: '8px',
+      border: '1px solid #e4e4e7',
+      overflow: 'hidden'
+    },
+    table: {
+      width: '100%',
+      borderCollapse: 'collapse' as const
+    },
+    th: {
+      textAlign: 'left' as const,
+      padding: '12px 16px',
+      fontSize: '12px',
+      fontWeight: 600,
+      textTransform: 'uppercase' as const,
+      color: '#71717a',
+      backgroundColor: '#f9fafb',
+      borderBottom: '2px solid #e4e4e7'
+    },
+    td: {
+      padding: '12px 16px',
+      fontSize: '14px',
+      borderBottom: '1px solid #f4f4f5',
+      color: '#3f3f46'
+    },
+    button: {
+      backgroundColor: '#ef4444',
+      color: 'white',
+      border: 'none',
+      padding: '6px 12px',
+      borderRadius: '6px',
+      cursor: 'pointer',
+      fontSize: '12px',
+      fontWeight: 600
+    }
+  }
+
   return (
-    <div className="table-container">
-      <table className="table-ms">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((p) => (
-            <tr key={p.id}>
-              <td>{p.id}</td>
-              <td>{p.name}</td>
-              <td>{p.description}</td>
-              <td>${p.price.toFixed(2)}</td>
-              <td>{p.stock}</td>
-              <td>
-                <button className="button-ms" style={{ backgroundColor: '#dc3545', padding: '4px 8px', fontSize: '0.8rem' }} onClick={() => handleDelete(p.id!)}>Eliminar</button>
-              </td>
+    <div style={styles.container}>
+      <div style={{ overflowX: 'auto' }}>
+        <table style={styles.table}>
+          <thead>
+            <tr>
+              <th style={styles.th}>ID</th>
+              <th style={styles.th}>Nombre</th>
+              <th style={styles.th}>Descripción</th>
+              <th style={styles.th}>Precio</th>
+              <th style={styles.th}>Stock</th>
+              <th style={styles.th}>Acciones</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {products.map((p) => (
+              <tr key={p.id}>
+                <td style={styles.td}>{p.id}</td>
+                <td style={{ ...styles.td, fontWeight: 500 }}>{p.name}</td>
+                <td style={styles.td}>{p.description}</td>
+                <td style={styles.td}>${p.price.toFixed(2)}</td>
+                <td style={{ ...styles.td, fontWeight: 700 }}>{p.stock}</td>
+                <td style={styles.td}>
+                  <button style={styles.button} onClick={() => handleDelete(p.id!)}>Eliminar</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

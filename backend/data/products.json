@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "name": "Auriculares Pro X",
+        "sku": "ELE-001",
+        "category": "Electr\u00f3nica",
+        "stock": 45,
+        "minStock": 10,
+        "price": 89.99
+    },
+    {
+        "id": 2,
+        "name": "Teclado Mec\u00e1nico RGB",
+        "sku": "ELE-002",
+        "category": "Electr\u00f3nica",
+        "stock": 8,
+        "minStock": 10,
+        "price": 129.99
+    },
+    {
+        "id": 3,
+        "name": "Camiseta Unisex L",
+        "sku": "ROP-001",
+        "category": "Ropa",
+        "stock": 0,
+        "minStock": 20,
+        "price": 19.99
+    }
+]

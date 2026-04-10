@@ -29,28 +29,105 @@ export default function ProductForm({ onProductCreated }: any) {
     setForm({ name: "", description: "", price: 0, stock: 0 })
   }
 
+  const styles = {
+    form: {
+      backgroundColor: 'white',
+      padding: '24px',
+      borderRadius: '8px',
+      border: '1px solid #e4e4e7',
+      marginBottom: '24px'
+    },
+    grid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+      gap: '16px'
+    },
+    field: {
+      display: 'flex',
+      flexDirection: 'column' as const,
+      gap: '8px'
+    },
+    label: {
+      fontSize: '14px',
+      fontWeight: 500,
+      color: '#3f3f46'
+    },
+    input: {
+      padding: '8px 12px',
+      borderRadius: '6px',
+      border: '1px solid #e4e4e7',
+      fontSize: '14px',
+      outline: 'none',
+      transition: 'border-color 0.2s'
+    },
+    button: {
+      marginTop: '24px',
+      backgroundColor: '#2563eb',
+      color: 'white',
+      padding: '10px 20px',
+      borderRadius: '6px',
+      border: 'none',
+      fontSize: '14px',
+      fontWeight: 600,
+      cursor: 'pointer',
+      width: '100%'
+    }
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="form-ms">
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-        <div>
-          <label>Nombre:</label>
-          <input className="input-ms" name="name" placeholder="Nombre" value={form.name} onChange={handleChange} required />
+    <form onSubmit={handleSubmit} style={styles.form}>
+      <div style={styles.grid}>
+        <div style={styles.field}>
+          <label style={styles.label}>Nombre:</label>
+          <input 
+            style={styles.input} 
+            name="name" 
+            placeholder="Nombre" 
+            value={form.name} 
+            onChange={handleChange} 
+            required 
+          />
         </div>
-        <div>
-          <label>Descripción:</label>
-          <input className="input-ms" name="description" placeholder="Descripción" value={form.description} onChange={handleChange} required />
+        <div style={styles.field}>
+          <label style={styles.label}>Descripción:</label>
+          <input 
+            style={styles.input} 
+            name="description" 
+            placeholder="Descripción" 
+            value={form.description} 
+            onChange={handleChange} 
+            required 
+          />
         </div>
-        <div>
-          <label>Precio:</label>
-          <input className="input-ms" name="price" type="number" placeholder="Precio" value={form.price} onChange={handleChange} required />
+        <div style={styles.field}>
+          <label style={styles.label}>Precio:</label>
+          <input 
+            style={styles.input} 
+            name="price" 
+            type="number" 
+            placeholder="Precio" 
+            value={form.price} 
+            onChange={handleChange} 
+            required 
+          />
         </div>
-        <div>
-          <label>Stock:</label>
-          <input className="input-ms" name="stock" type="number" placeholder="Stock" value={form.stock} onChange={handleChange} required />
+        <div style={styles.field}>
+          <label style={styles.label}>Stock:</label>
+          <input 
+            style={styles.input} 
+            name="stock" 
+            type="number" 
+            placeholder="Stock" 
+            value={form.stock} 
+            onChange={handleChange} 
+            required 
+          />
         </div>
       </div>
 
-      <button className="button-ms" type="submit" style={{ marginTop: '10px' }}>Guardar Producto</button>
+      <button style={styles.button} type="submit">
+        Guardar Producto
+      </button>
     </form>
   )
 }
