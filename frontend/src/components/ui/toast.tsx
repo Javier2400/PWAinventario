@@ -133,3 +133,7 @@ export const ToastAction = React.forwardRef<
   />
 ))
 ToastAction.displayName = ToastPrimitives.Action.displayName
+
+export type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>
+
+export type ToastActionElement = React.ReactElement<typeof ToastAction>
