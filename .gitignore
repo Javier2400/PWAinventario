@@ -16,3 +16,6 @@ backend/node_modules/
 *.pyc
 .vscode/
 .idea/
+TODO.md
+.gitignore
+README.md
