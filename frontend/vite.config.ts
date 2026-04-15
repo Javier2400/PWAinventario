@@ -30,6 +30,10 @@ export default defineConfig({
       }
     })
   ],
+  preview: {
+    allowedHosts: ['.onrender.com'],
+    host: true
+  },
   server: {
     proxy: {
       '/api': {
