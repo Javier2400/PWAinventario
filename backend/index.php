@@ -37,41 +37,15 @@ $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
 // CORS Middleware (Wraps all responses)
 $app->add(function (Request $request, $handler) {
-    $origin = $request->getHeaderLine('Origin');
-    if (!$origin) {
-        $origin = '*';
-    }
-    
-    // Handle OPTIONS Preflight
-    if ($request->getMethod() === 'OPTIONS') {
-        $response = new \Slim\Psr7\Response();
-        $response = $response
-            ->withHeader('Access-Control-Allow-Origin', $origin)
-            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
-            ->withStatus(200);
-            
-        if ($origin !== '*') {
-            $response = $response->withHeader('Access-Control-Allow-Credentials', 'true');
-        }
-        
-        return $response;
-    }
-    
-    // Process the regular request
     $response = $handler->handle($request);
-    
-    // Attach CORS headers to the resulting response (including errors)
-    $response = $response
-        ->withHeader('Access-Control-Allow-Origin', $origin)
+    return $response
+        ->withHeader('Access-Control-Allow-Origin', '*')
         ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
         ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-        
-    // Only add Allow-Credentials if not wildcard
-    if ($origin !== '*') {
-        $response = $response->withHeader('Access-Control-Allow-Credentials', 'true');
-    }
-    
+});
+
+// Handle OPTIONS Preflight
+$app->options('/{routes:.+}', function ($request, $response, $args) {
     return $response;
 });
 

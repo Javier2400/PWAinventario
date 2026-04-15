@@ -4,11 +4,11 @@ import { Elements } from '@stripe/react-stripe-js';
 import { createPaymentIntent, getPayments } from '../services/api';
 import CheckoutForm from './CheckoutForm';
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY || "pk_test_51T81pMCsyImg6nenvX4KHDjgc0T27BAtmIpkSC3EEHvznaVXasbgbwVRlGkmM3XUd657qVx4ZQeqgmScqfPesccU00Sj5mHDD6");
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY || "pk_live_51T4M20FgtNqAHTMVi02lvSbsw64sZJwD0o6ZUfzfDCTLcDjQjsocrxNgbWD1nZq73tCt3WpRupGRQMr7aZAuCzfr00JUZ6QpgK");
 
 const PaymentPage = () => {
   const [clientSecret, setClientSecret] = useState("");
-  const [amount] = useState(10000); // 100.00 MXN in cents
+  const [amount] = useState(1000); // 100.00 MXN in cents
   const [productName] = useState("Crema esfoliante");
   const [payments, setPayments] = useState<any[]>([]);
   const [isLargeScreen, setIsLargeScreen] = useState(typeof window !== 'undefined' ? window.innerWidth >= 1024 : true);
